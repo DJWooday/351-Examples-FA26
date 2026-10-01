@@ -37,6 +37,12 @@ struct WeightS {
     float inTons;
 };
 
+void foo() {
+    static int x = 0;
+    int y = 0;
+    cout << ++x << " " << ++y << endl;
+}
+
 int main() {
     integer A = 10;
     State state = STARTING;
@@ -53,6 +59,9 @@ int main() {
     printMovie(EEAAO);
     printMovie(swissArmyMan);
 
+    int x;
+    cout << "X is " << x << endl;
+
     Movie theDaniels[2] = {swissArmyMan, EEAAO};
 
     Movie* turnDownForWhat = new Movie();
@@ -61,6 +70,7 @@ int main() {
     cout << turnDownForWhat->title;
 
     printMovie(*turnDownForWhat);
+
 
     Friend parker;
     parker.name = "Parker";
@@ -84,5 +94,16 @@ int main() {
 
     cout << "Unions: " << endl;
     cout << weight.inPounds << endl;
+
+    int i, j;
+    for (int i = 0; i < 10; i++)
+        cout << i;
+    cout << endl << i;
+
+    foo();
+    foo();
+    foo();
+    foo();
+
     return 0;
 }

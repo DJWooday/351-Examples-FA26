@@ -5,6 +5,7 @@ typedef int littleNumber;
 enum controllerType {KEYBOARD, CONTROLLER=12};
 enum state {STARTING, RUNNING, STOPPING, STOPPED};
 
+
 struct Movie {
     string title;
     int runtime;
@@ -28,6 +29,16 @@ struct WeightS {
 };
 void printMovie(Movie m) {
     cout << m.title << ": " << m.runtime << endl;
+}
+
+void foo() {
+    static int x = 0;
+    int y = 0;
+    cout << ++x << " " << ++y << endl;
+    int a[] = {1,2,3,4,5};
+    for (int i = 0; i < 5; i++) {
+        cout << a[i] << " ";
+    }
 }
 
 int main() {
@@ -69,6 +80,8 @@ int main() {
     infinityWar.runtime = 100;
     parker.favoriteMovie = infinityWar;
 
+    int i, j;
+
     cout << &infinityWar << endl;
     cout << &(parker.favoriteMovie) << endl;
 
@@ -83,5 +96,16 @@ int main() {
     cout << sizeof(weights) << endl;
     cout << sizeof(weightu) << endl;
 
+    for (int i=0; i < 10; i++) {
+        cout << i << endl;
+    }
+    cout << i << endl;
+
+    foo();
+    foo();
+    foo();
+    int x;
+    cout << "X is " << x << endl;
+    foo();
     return 0;
 }
