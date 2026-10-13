@@ -7,7 +7,15 @@
 #include "Rectangle.h"
 
 class Cube {
+    Rectangle* baseRect;
+    float depth;
+public:
+    Cube();
+    Cube(Rectangle* r, float d);
+    Cube(const Cube&);
+    ~Cube();
 
+    Cube& operator=(const Cube&);
 };
 
 

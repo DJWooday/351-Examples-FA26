@@ -7,9 +7,12 @@
 
 
 class Rectangle {
-    float width, height;
 public:
-    Rectangle(float w, float h);
+    float width, height;
+
+    Rectangle(float w, float h) : width(w), height(h) {};
+    Rectangle() : width(5), height(5) {};
+
     void PrintRect();
 };
 
