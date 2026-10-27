@@ -40,6 +40,7 @@ public:
 };
 
 int main() {
+    for (int i = 0; i<100000000000; i++) {}
     Rectangle r = Rectangle(3, 4);
     std::cout << r.getArea() << endl;
     //Rectangle rect(1,2);

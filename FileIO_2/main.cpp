@@ -6,23 +6,41 @@ int main() {
     ofstream output;
     output.open("scores.txt");
     output << "Paul " << 88 << endl;
+    output << "Jeremy " << 21 << endl;
+    output << "Ian " << 100 << endl;
     output.close();
 
     ifstream input;
     input.open("scores.txt");
-    if (input.fail()) return 0;
-    string name; float score;
-    input >> name >> score;
+    while (!input.eof()) {
+        string name; int score;
+        input >> name >> score;
+        if (input.fail()) break;
+        cout << name << " " << score << endl;
+    }
+
     input.close();
+    input.open("scores.txt");
+    string line;
+    while (getline(input, line)) {
+        cout << line << endl;
+    }
 
-    cout << name << " " << score << endl;
+    // ifstream input;
+    // input.open("scores.txt");
+    // if (input.fail()) return 0;
+    // string name; float score;
+    // input >> name >> score;
+    // input.close();
+    //
+    // cout << name << " " << score << endl;
+    //
+    // fstream file;
+    // file.open("scores.txt", ios::out | ios::app);
+    // file << "Jeremy " << 1 << endl;
+    // file.close();
 
-    fstream file;
-    file.open("scores.txt", ios::out | ios::app);
-    file << "Jeremy " << 1 << endl;
-    file.close();
-
-    cout << ios::out << " " << ios::app << endl;
-    cout << (ios::out | ios::app);
+    // cout << ios::out << " " << ios::app << endl;
+    // cout << (ios::out | ios::app);
     return 0;
 }

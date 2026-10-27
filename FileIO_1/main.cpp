@@ -12,18 +12,32 @@ int main() {
 
     ifstream input;
     input.open("scores.txt");
-    if (input.fail()) return -1;
-    string name1, name2;
-    int score1, score2;
-    input >> name1 >> score1;
+    while (!input.eof()) {
+        string name; int score;
+        input >> name >> score;
+        if (input.fail()) break;
+        cout << name << " " << score << endl;
+    }
     input.close();
+    input.open("scores.txt");
+    string line;
+    while (getline(input, line)) {
+        cout << line << endl;
+    }
+    // ifstream input;
+    // input.open("scores.txt");
+    // if (input.fail()) return -1;
+    // string name1, name2;
+    // int score1, score2;
+    // input >> name1 >> score1;
+    // input.close();
 
-    cout << name1 << " " << score1 << endl;
+    //cout << name1 << " " << score1 << endl;
 
-    fstream file;
-    file.open("scores.txt", ios::out | ios::app);
-    file << "Jason " << -19 << endl;
-    file.close();
-
-    cout << (ios::out | ios::app) << endl;
+    // fstream file;
+    // file.open("scores.txt", ios::out | ios::app);
+    // file << "Jason " << -19 << endl;
+    // file.close();
+    //
+    // cout << (ios::out | ios::app) << endl;
 }
