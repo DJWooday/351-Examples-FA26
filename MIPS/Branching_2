@@ -1,0 +1,64 @@
+.data
+save: .word 5 5 5 5 10
+A: .word 2 15 30 10 10
+
+.text
+li $s3 10 #i
+li $s4 10 #j
+li $s1 50 #g
+li $s2 17 #h
+
+bne $s3 $s4 Else # go to else if inequal
+add $s0 $s1 $s2
+
+j Exit
+Else:
+sub $s0 $s1 $s2
+
+Exit:
+
+li $v0 1
+move $a0 $s0
+syscall
+
+
+li $s3 0
+li $s5 5
+la $s6 save
+
+Loop:
+sll $t0 $s3 2 # i * 4
+add $t0 $t0 $s6 # add i offset to addy
+lw $t1 0($t0) # get from offset addy
+bne $s5 $t1 LoopExit
+
+addiu $s3 $s3 1
+
+j Loop
+
+LoopExit:
+
+
+li $s3 0 # i = 0
+li $s5 5 # len = 5
+li $s0 0 # sum = 0
+la $s6 A
+
+For:
+#slt $t9 $s3 $s5 # check i < len, t9 == 1 if so
+#beq $t9 $zero ForExit
+#beq $s3 $s5 ForExit
+bge $s3 $s5 ForExit
+
+sll $t0 $s3 2 # i * 4 for offset
+add $t0 $t0 $s6 # add offset to addy
+lw $t1 0($t0) # get A[i]
+add $s0 $s0 $t1 #  sum += A[i]
+
+addiu $s3 $s3 2
+j For
+
+ForExit:
+li $v0 1
+move $a0 $s0
+syscall

@@ -1,0 +1,31 @@
+# v0
+li $s0 2
+li $s1 3
+li $s2 2
+
+# v1
+li $s3 1
+li $s4 1
+li $s5 9
+
+li $t9 4
+mul $t0 $s0 $t9
+mul $t1 $s1 $t9
+mul $t2 $s2 $t9
+
+add $t3 $t0 $s3
+add $t4 $t1 $s4
+add $t5 $t2 $s5
+
+
+li $t0 10
+li $t1 500000000
+mult $t0 $t1
+
+li $t0 9
+li $t1 2
+div $t0 $t1
+
+li $v0 1
+mflo $a0
+syscall 

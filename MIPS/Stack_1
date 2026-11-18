@@ -1,0 +1,18 @@
+.text
+# put an array on the stack
+# store 10 20 30 40 at the top of the stack
+#li $t0 10
+#sw $t0 0($sp)
+#li $t0 20
+#sw $t0 4($sp)
+#li $t0 30
+#sw $t0 8($sp)
+#li $t0 40
+#sw $t0 12($sp)
+
+move $s7 $sp
+addi $sp $sp 16
+
+# do whatever else
+li $t0 10
+sw $t0 0($s7)

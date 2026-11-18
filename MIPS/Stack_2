@@ -1,0 +1,16 @@
+.text
+#li $t0 10
+#sw $t0 0($sp)
+#li $t0 20
+#sw $t0 4($sp)
+#li $t0 30
+#sw $t0 8($sp)
+
+move $s7 $sp
+addi $sp $sp 16
+li $t0 10
+sw $t0 0($s7)
+li $t0 20
+sw $t0 4($s7)
+li $t0 30
+sw $t0 8($s7)

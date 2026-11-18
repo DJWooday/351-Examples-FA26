@@ -1,0 +1,64 @@
+.data
+save: .word 5 5 5 5 10
+summedArray: .word 2 10 30 15
+
+.text
+li $s3 10 #i 
+li $s4 10 #j
+li $s0 0 #f
+li $s1 50 #g
+li $s2 17 #h
+
+bne $s3 $s4 Else # if i != j go to else
+add $s0 $s1 $s2 # f= g + h
+j Exit
+Else:
+sub $s0 $s1 $s2 #f = g - h
+Exit:
+
+li $v0 1
+move $a0 $s0
+syscall
+
+
+# loop example 
+la $s6 save # get addy of array
+li $s3 0 # i = 0
+li $s5 5 # k = 5
+
+Loop:
+sll $t0 $s3 2 # mult i by 4 to get offset
+add $t0 $t0 $s6 # add the offset to the addy
+lw $t1 0($t0) # access the offset addy
+
+bne $t1 $s5 LoopExit # Exit if (save[i] != k)
+addi $s3 $s3 1
+
+j Loop
+LoopExit:
+
+
+li $s3 0 # i = 0
+li $s5 4 # len = 4
+li $s0 0 # sum = 0
+la $s6 summedArray
+
+For:
+#beq $s3 $s5 ForExit
+# slt $t9 $s3 $s5
+# beq $t9 $zero ForExit
+bge $s3 $s5 ForExit
+sll $t0 $s3 2 # i * 4 for offset
+add $t0 $t0 $s6 # add offset to array addy
+lw $t1 0($t0) # get value from offset addy
+
+add $s0 $s0 $t1 # sum += array[i]
+
+addi $s3 $s3 1 # i++
+j For
+
+ForExit:
+
+li $v0 1
+move $a0 $s0
+syscall
